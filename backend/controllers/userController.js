@@ -1,7 +1,6 @@
 const { encryptPassword, matchPassword } = require("../helper/userHelper.js");
-const user = require("../model/user.js");
 const userSchema = require("../model/user.js");
-
+const jwt = require("jsonwebtoken");
 const registerController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -60,10 +59,22 @@ const loginController = async (req, res) => {
         message: "Invalid Email or password",
       });
     }
+
+    const token = await jwt.sign(
+      { id: userExists._id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXP }
+    );
     userExists.password = undefined;
     return res
+      .cookie("token", token, { httpOnly: true, secure: true })
       .status(201)
-      .json({ success: true, message: "User login successfully" , userExists});
+      .json({
+        success: true,
+        message: "User login successfully",
+        userExists,
+        token,
+      });
   } catch (error) {
     return res
       .status(500)

@@ -14,7 +14,7 @@ import { useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
 
-const url = "http://localhost:5000/api/v1/user/login";
+const url = `${import.meta.env.VITE_BASE_URL}/user/login`;
 export function LoginForm({
   className,
   ...props
@@ -30,6 +30,7 @@ export function LoginForm({
     event.preventDefault();
     setInput(input);
     axios.post(url, input, {
+      withCredentials:true , // Send cookies to the cookies tab in console when true 
       headers: { "Content-Type": "application/json" }
     }).then(
       (response) => {

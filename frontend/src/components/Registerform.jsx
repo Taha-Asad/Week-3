@@ -9,7 +9,7 @@ import { toast } from "react-toastify"
 import { Link } from "react-router-dom"
 
 
-const url = "http://localhost:5000/api/v1/user/register"
+const url = `${import.meta.env.VITE_BASE_URL}/user/register`;
 export function Registerform({
   className,
   ...props
