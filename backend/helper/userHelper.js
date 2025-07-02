@@ -5,6 +5,8 @@ const encryptPassword = async(plainPassword)=>{
     const encryptedPassword = await bcrypt.hash(plainPassword , saltRounds);
     return encryptedPassword;
 }
+const matchPassword = async( userPassword , encryptedPassword )=>{
+   return bcrypt.compare(userPassword , encryptedPassword);
+}
 
-
-module.exports = {encryptPassword};
+module.exports = {encryptPassword , matchPassword};

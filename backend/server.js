@@ -18,6 +18,8 @@ const userRoutes = require("./routes/userRoutes.js");
 
 //base route : http://localhost:5000/
 //routes path
+
+//user routes
 app.use("/api/v1/user", userRoutes);
 
 app.listen(PORT, () => {
