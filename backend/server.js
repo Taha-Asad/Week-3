@@ -4,26 +4,21 @@ const color = require("colors");
 const morgan = require("morgan");
 dotenv.config();
 const connectDB = require("./config/db.js");
-
-
-
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT;
 
-// middlewares 
+// middlewares
 app.use(morgan("dev"));
 app.use(express.json());
-
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 // routes
 const userRoutes = require("./routes/userRoutes.js");
 
-
-//base route : http://localhost:5000/ 
+//base route : http://localhost:5000/
 //routes path
-app.use("/api/v1/user" , userRoutes);
-
-
+app.use("/api/v1/user", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`The Server is running on Port: ${PORT} `.blue.bgWhite.underline);
