@@ -6,10 +6,11 @@ import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import { Link } from "react-router-dom"
 
 
 const url = "http://localhost:5000/api/v1/user/register"
-export function LoginForm({
+export function Registerform({
   className,
   ...props
 }) {
@@ -102,9 +103,9 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 already have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
+                <Link to={"/login"} className="underline underline-offset-4">
                   Login In
-                </a>
+                </Link>
               </div>
             </div>
           </form>
