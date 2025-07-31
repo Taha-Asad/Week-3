@@ -109,12 +109,19 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply min-h-screen;
+  }
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
   }
 }

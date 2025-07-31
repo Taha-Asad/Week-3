@@ -63,7 +63,7 @@ const loginController = async (req, res) => {
     const token = await jwt.sign(
       { id: userExists._id },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXP }
+      { expiresIn: "7d" }
     );
     userExists.password = undefined;
     return res
